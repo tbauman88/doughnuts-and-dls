@@ -15,7 +15,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@doughnuts-and-dls/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
