@@ -55,6 +55,14 @@
             "tsConfig": "apps/api/tsconfig.spec.json",
             "passWithNoTests": true
           }
+        },
+        "e2e": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/api/jest.config.js",
+            "tsConfig": "apps/api/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
         }
       }
     },

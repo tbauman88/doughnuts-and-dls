@@ -23,7 +23,8 @@
     "update": "nx migrate latest",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "test:api:coverage": "nx test api --code-coverage --no-cache"
   },
   "private": true,
   "dependencies": {
