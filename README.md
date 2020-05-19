@@ -12,6 +12,8 @@ It will include names, descriptions, prices, images and if its a special doughnu
 
 Simply run the `yarn` command
 
+
+#### To run the API using Swagger run
 ```bash
 yarn start
 ```
