@@ -1,7 +1,8 @@
-export interface Doughnuts {
+export interface Doughnut {
+  id: number;
   name: string;
   description: string;
   price: string;
-  special: boolean;
+  special?: boolean;
   imageUrl: string;
 }
