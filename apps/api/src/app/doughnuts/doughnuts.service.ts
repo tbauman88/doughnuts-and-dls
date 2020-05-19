@@ -8,8 +8,7 @@ export class DoughnutsService {
     return doughnuts;
   }
 
-  getDoughnut(id: string): Doughnut {
-    const doughnutId = Number(id);
+  getDoughnut(doughnutId: number): Doughnut {
     return doughnuts.find(d => d.id === doughnutId);
   }
 }
