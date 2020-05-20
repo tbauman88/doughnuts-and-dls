@@ -31,12 +31,13 @@
     "@nestjs/common": "^6.8.3",
     "@nestjs/core": "^6.8.3",
     "@nestjs/platform-express": "^6.8.3",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "supertest": "^4.0.2"
   },
   "devDependencies": {
     "@nestjs/schematics": "^6.7.0",
     "@nestjs/swagger": "^4.5.7",
-    "@nestjs/testing": "^6.8.3",
+    "@nestjs/testing": "^7.0.13",
     "@nrwl/eslint-plugin-nx": "9.3.0",
     "@nrwl/jest": "9.3.0",
     "@nrwl/nest": "^9.3.0",
