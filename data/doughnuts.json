@@ -1,0 +1,66 @@
+[
+  {
+    "url": "https://boxcardonuts.ca/product/wildberry-crumble/",
+    "id": "wildberry-crumble",
+    "name": "Mint Chip Brownie",
+    "price": "$3.75",
+    "description": "Our rich mint chocolate ganache topped melt in your mouth fudge brownie and a vanilla mint drizzle. OMG…You gotta try this!",
+    "imageUrl": "https://boxcardonuts.ca/wp-content/uploads/2020/05/FB3A017E-AE7F-4B74-8536-DFED476E3B15-scaled.jpeg"
+  },
+  {
+    "url": "https://boxcardonuts.ca/product/the-elvis/",
+    "id": "the-elvis",
+    "name": "The Fat “Elvis”",
+    "price": "$3.75",
+    "description": "Named after Elvis Presley himself – his fave combo is on our donuts! Our light and fluffy yeast risen donut smothered in house made maple glaze and topped with fresh banana, bacon crumble and peanut butter drizzle. Obvi Elvis knows best!",
+    "imageUrl": "https://boxcardonuts.ca/wp-content/uploads/2020/05/CF552782-5C64-4846-BA88-738EEB0291D5-scaled.jpeg"
+  },
+  {
+    "url": "https://boxcardonuts.ca/product/lemon-sherbet/",
+    "id": "lemon-sherbet",
+    "name": "Lemon Sherbet",
+    "price": "$3.25",
+    "description": "Our house glaze infused with naturallemon flavour and a touch of lemon buttercream. Tart and tangy on top of our soft yeast risen donut.",
+    "imageUrl": "https://boxcardonuts.ca/wp-content/uploads/2020/05/271BE853-10DE-4DB2-B7A2-A38CB876A865-scaled.jpeg"
+  },
+  {
+    "url": "https://boxcardonuts.ca/product/toasted-coconut-cream-pie/",
+    "id": "toasted-coconut-cream-pie",
+    "name": "Summer Berry Cheesecake",
+    "price": "$3.75",
+    "description": "Our classic Bismarck donut filled with a mix of Summer Berries and topped with a rich cream cheese glaze and graham crackers. Delicious!",
+    "imageUrl": "https://boxcardonuts.ca/wp-content/uploads/2020/05/46520AC1-8EAE-407B-B55E-845F913D4413-scaled.jpeg"
+  },
+  {
+    "url": "https://boxcardonuts.ca/product/key-lime/",
+    "id": "key-lime",
+    "name": "Caramel Green Apple",
+    "price": "$3.25",
+    "description": "One of our very first flavours we made when we opened last year! This is to die for! Natural key lime infused glaze, lime zest and graham crackers. So delicious!",
+    "imageUrl": "https://boxcardonuts.ca/wp-content/uploads/2020/05/44545B69-BB99-472B-8BB1-2E69E53C344B-scaled.jpeg"
+  },
+  {
+    "url": "https://boxcardonuts.ca/product/red-velvet-cheesecake/",
+    "id": "red-velvet-cheesecake",
+    "name": "Almond Mocha Mudslide",
+    "price": "$3.50",
+    "description": "Our house made glaze infused with Detour dark roast coffee topped with toasted almonds, oreo crumb, and milk chocolate drizzle. Heaven heaven heaven! 12/10",
+    "imageUrl": "https://boxcardonuts.ca/wp-content/uploads/2020/05/C193EAC4-8924-4870-A5D6-C267D04012D4-scaled.jpeg"
+  },
+  {
+    "url": "https://boxcardonuts.ca/product/smores/",
+    "id": "smores",
+    "name": "Sharkleberry",
+    "price": "$3.25",
+    "description": "One of our first ever flavours! Classic Sharkleberry. A blend of strawberry, orange, banana. Childhood memories! So good!",
+    "imageUrl": "https://boxcardonuts.ca/wp-content/uploads/2020/05/861F3E2D-124C-4800-ACE6-B6FED529E8FA-scaled.jpeg"
+  },
+  {
+    "url": "https://boxcardonuts.ca/product/lavender-honey/",
+    "id": "lavender-honey",
+    "name": "Butterfly Pea Flower",
+    "price": "$3.25",
+    "description": "This Southeast Asia flower is delightful. A fruity and floral flavour when added to culinary dishes. Garnished with a few little edible blue flowers. Yum!",
+    "imageUrl": "https://boxcardonuts.ca/wp-content/uploads/2020/05/19B13794-30A2-45EE-9723-7F658F554166-scaled.jpeg"
+  }
+]
