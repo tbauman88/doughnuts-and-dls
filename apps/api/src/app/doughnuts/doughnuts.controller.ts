@@ -16,6 +16,6 @@ export class DoughnutsController {
 
   @Get(':id')
   getDoughnut(@Param('id') id: string): Doughnut {
-    return this.doughnutsService.getDoughnut(+id);
+    return this.doughnutsService.getDoughnut(id);
   }
 }

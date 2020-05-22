@@ -33,7 +33,7 @@ describe('Doughnuts Controller', () => {
 
   it('should return certain doughnut', async () => {
     const doughnut = {
-      id: 29,
+      id: '29',
       name: 'Caramel Green Apple',
       description:
         'Light and fluffy yeast risen donut topped with our sour green apple glaze, caramel bits, and dulce de leche drizzle. Tart + tangy. YUM!',

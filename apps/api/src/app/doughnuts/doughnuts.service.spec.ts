@@ -3,6 +3,16 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { doughnuts } from './doughnuts';
 import { doughnutError, DoughnutsService } from './doughnuts.service';
 
+const mockDoughnut = {
+  id: '29',
+  name: 'Caramel Green Apple',
+  description:
+    'Light and fluffy yeast risen donut topped with our sour green apple glaze, caramel bits, and dulce de leche drizzle. Tart + tangy. YUM!',
+  price: '$3.25',
+  imageUrl:
+    'https://static.wixstatic.com/media/1f7fda_6da1dd24fde041c98708175c5269a79d~mv2.jpg'
+};
+
 describe('DoughnutsService', () => {
   let service: DoughnutsService;
   let app: INestApplication;
@@ -30,19 +40,11 @@ describe('DoughnutsService', () => {
 
   describe('getDoughnut', () => {
     it('should return certain doughnut', () => {
-      expect(service.getDoughnut(29)).toEqual({
-        id: 29,
-        name: 'Caramel Green Apple',
-        description:
-          'Light and fluffy yeast risen donut topped with our sour green apple glaze, caramel bits, and dulce de leche drizzle. Tart + tangy. YUM!',
-        price: '$3.25',
-        imageUrl:
-          'https://static.wixstatic.com/media/1f7fda_6da1dd24fde041c98708175c5269a79d~mv2.jpg'
-      });
+      expect(service.getDoughnut(mockDoughnut.id)).toEqual(mockDoughnut);
     });
 
     it('should throw an error', () => {
-      const noIdCall = () => service.getDoughnut(9999);
+      const noIdCall = () => service.getDoughnut('not an id');
       expect(noIdCall).toThrowError(BadRequestException);
       expect(noIdCall).toThrowError(doughnutError);
     });
