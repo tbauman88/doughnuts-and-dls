@@ -2,6 +2,10 @@
   "name": "doughnuts-and-dls",
   "version": "0.0.0",
   "license": "MIT",
+  "author": "Tyler Bauman",
+  "bugs": {
+    "url": "https://github.com/tbauman88/doughnuts-and-dls/issues"
+  },
   "scripts": {
     "nx": "nx",
     "start": "nx serve",
@@ -24,7 +28,8 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "test:api:coverage": "nx test api --code-coverage --no-cache"
+    "test:api:coverage": "nx test api --code-coverage --no-cache",
+    "doughnuts:build": "ts-node --project ./tsconfig.script.json build.ts"
   },
   "private": true,
   "dependencies": {
@@ -52,6 +57,7 @@
     "eslint-config-prettier": "6.0.0",
     "jest": "25.2.3",
     "prettier": "2.0.4",
+    "puppeteer": "^3.1.0",
     "swagger-ui-express": "^4.1.4",
     "ts-jest": "25.2.1",
     "ts-node": "~7.0.0",

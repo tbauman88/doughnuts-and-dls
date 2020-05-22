@@ -3,7 +3,6 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { doughnuts } from './doughnuts';
 
 export const doughnutError = 'Doughnut could not be found';
-
 @Injectable()
 export class DoughnutsService {
   private doughnuts: Doughnut[] = doughnuts;
@@ -12,7 +11,7 @@ export class DoughnutsService {
     return this.doughnuts;
   }
 
-  getDoughnut(doughnutId: number): Doughnut {
+  getDoughnut(doughnutId: string): Doughnut {
     const doughnut = this.doughnuts.find(d => d.id === doughnutId);
 
     if (!doughnut) {
