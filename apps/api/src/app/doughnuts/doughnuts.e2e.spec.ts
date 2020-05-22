@@ -1,15 +1,19 @@
+import { Doughnut } from '@doughnuts-and-dls/api-interfaces';
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import * as request from 'supertest';
-import { doughnuts } from './doughnuts';
+import * as api from '../../data/doughnuts.json';
 import { DoughnutsModule } from './doughnuts.module';
 import { DoughnutsService } from './doughnuts.service';
 
 describe('Doughnuts', () => {
+  const doughnuts: Doughnut[] = api.data;
   let app: INestApplication;
+
   const doughnutsService = {
     getDoughnuts: () => doughnuts,
-    getDoughnut: (doughnutId: number) => doughnuts[doughnutId]
+    getDoughnut: (doughnutId: string) =>
+      doughnuts.find(d => d.id === doughnutId)
   };
 
   beforeAll(async () => {
@@ -31,11 +35,11 @@ describe('Doughnuts', () => {
       .expect(doughnutsService.getDoughnuts());
   });
 
-  it(`/GET 'Summer Berry Cheesecake' doughnut`, () => {
+  it(`/GET 'caramel-green-apple' doughnut`, () => {
     return request(app.getHttpServer())
-      .get('/doughnuts/28')
+      .get('/doughnuts/caramel-green-apple')
       .expect(200)
-      .expect(doughnutsService.getDoughnut(28));
+      .expect(doughnutsService.getDoughnut('caramel-green-apple'));
   });
 
   afterAll(async () => {

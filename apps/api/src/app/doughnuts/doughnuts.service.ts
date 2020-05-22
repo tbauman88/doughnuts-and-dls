@@ -1,11 +1,11 @@
 import { Doughnut } from '@doughnuts-and-dls/api-interfaces';
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { doughnuts } from './doughnuts';
+import * as api from '../../data/doughnuts.json';
 
 export const doughnutError = 'Doughnut could not be found';
 @Injectable()
 export class DoughnutsService {
-  private doughnuts: Doughnut[] = doughnuts;
+  private doughnuts: Doughnut[] = api.data;
 
   getDoughnuts(): Doughnut[] {
     return this.doughnuts;

@@ -1,5 +1,6 @@
-import { removeSync, writeJsonSync } from 'fs-extra';
+import { readJsonSync, removeSync, writeJsonSync } from 'fs-extra';
 import { JSDOM } from 'jsdom';
+import { uniqBy } from 'lodash';
 import { join } from 'path';
 import { launch } from 'puppeteer';
 
@@ -55,8 +56,15 @@ const runGetDoughnuts = async () => {
     delete doughnut['url'];
   }
 
-  removeSync(join(__dirname, './data/doughnuts.json'));
-  writeJsonSync(join(__dirname, './data/doughnuts.json'), doughnuts);
+  const { data: currentDoughnuts } = readJsonSync(
+    join(__dirname, './apps/api/src/data/doughnuts.json')
+  );
+  const combineDoughnuts = uniqBy([...currentDoughnuts, ...doughnuts], 'name');
+
+  removeSync(join(__dirname, './apps/api/src/data/doughnuts.json'));
+  writeJsonSync(join(__dirname, './apps/api/src/data/doughnuts.json'), {
+    data: combineDoughnuts
+  });
 };
 
 (async () => {
