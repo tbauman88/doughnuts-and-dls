@@ -15,6 +15,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "resolveJsonModule": true,
     "paths": {
       "@doughnuts-and-dls/api-interfaces": ["libs/api-interfaces/src/index.ts"]
     }

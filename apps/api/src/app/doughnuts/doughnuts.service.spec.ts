@@ -1,19 +1,11 @@
+import { Doughnut } from '@doughnuts-and-dls/api-interfaces';
 import { BadRequestException, INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { doughnuts } from './doughnuts';
+import * as api from '../../data/doughnuts.json';
 import { doughnutError, DoughnutsService } from './doughnuts.service';
 
-const mockDoughnut = {
-  id: '29',
-  name: 'Caramel Green Apple',
-  description:
-    'Light and fluffy yeast risen donut topped with our sour green apple glaze, caramel bits, and dulce de leche drizzle. Tart + tangy. YUM!',
-  price: '$3.25',
-  imageUrl:
-    'https://static.wixstatic.com/media/1f7fda_6da1dd24fde041c98708175c5269a79d~mv2.jpg'
-};
-
 describe('DoughnutsService', () => {
+  const doughnuts: Doughnut[] = api.data;
   let service: DoughnutsService;
   let app: INestApplication;
 
@@ -40,7 +32,8 @@ describe('DoughnutsService', () => {
 
   describe('getDoughnut', () => {
     it('should return certain doughnut', () => {
-      expect(service.getDoughnut(mockDoughnut.id)).toEqual(mockDoughnut);
+      const doughnut = doughnuts.find(d => d.id === 'caramel-green-apple');
+      expect(service.getDoughnut(doughnut.id)).toEqual(doughnut);
     });
 
     it('should throw an error', () => {
