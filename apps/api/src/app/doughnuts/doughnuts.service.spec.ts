@@ -28,6 +28,18 @@ describe('DoughnutsService', () => {
     it('should return an array of doughnuts', () => {
       expect(service.getDoughnuts()).toEqual(doughnuts);
     });
+
+    it('should return an array of standard doughnuts', () => {
+      expect(service.getDoughnuts('standard')).toEqual(
+        doughnuts.filter(d => d.type === 'standard')
+      );
+    });
+
+    it('should return an array of weekly doughnuts', () => {
+      expect(service.getDoughnuts('weekly')).toEqual(
+        doughnuts.filter(d => d.type === 'weekly')
+      );
+    });
   });
 
   describe('getDoughnut', () => {

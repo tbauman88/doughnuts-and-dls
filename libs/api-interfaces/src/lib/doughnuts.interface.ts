@@ -3,6 +3,6 @@ export interface Doughnut {
   name: string;
   description: string;
   price: string;
-  special?: boolean;
+  type: string;
   imageUrl: string;
 }

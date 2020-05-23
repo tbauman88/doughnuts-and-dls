@@ -33,6 +33,30 @@ describe('Doughnuts Controller', () => {
     expect(await doughnutsController.getDoughnuts()).toBe(doughnuts);
   });
 
+  it('should return an array of standard doughnuts', async () => {
+    const standardDoughnuts = doughnuts.filter(d => d.type === 'standard');
+
+    jest
+      .spyOn(doughnutsService, 'getDoughnuts')
+      .mockImplementation(() => standardDoughnuts);
+
+    expect(await doughnutsController.getDoughnuts('standard')).toBe(
+      standardDoughnuts
+    );
+  });
+
+  it('should return an array of weekly doughnuts', async () => {
+    const weeklyDoughnuts = doughnuts.filter(d => d.type === 'weekly');
+
+    jest
+      .spyOn(doughnutsService, 'getDoughnuts')
+      .mockImplementation(() => weeklyDoughnuts);
+
+    expect(await doughnutsController.getDoughnuts('weekly')).toBe(
+      weeklyDoughnuts
+    );
+  });
+
   it('should return certain doughnut', async () => {
     const doughnut = doughnuts.find(d => d.id === 'caramel-green-apple');
     jest

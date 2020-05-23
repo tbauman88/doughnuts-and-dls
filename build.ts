@@ -49,6 +49,8 @@ const runGetDoughnuts = async () => {
       .join('')
       .replace('  ', ' ');
 
+    doughnut.type = 'weekly';
+
     doughnut.imageUrl = dom.window.document
       .querySelector(`${pageClass}gallery__image > img`)
       .getAttribute('src');

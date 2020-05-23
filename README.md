@@ -10,15 +10,16 @@
 
 ## What is Doughnuts API? 🍩
 
-This is a [NX Monorepo](https://nx.dev) that will provide you with a Doughnuts API app ready to use. When you build this project it will fetch donuts being sold at [Boxcar Donuts](https://www.bxcrdonuts.ca/) 
+This is a [NX Monorepo](https://nx.dev) that will provide you with a Doughnuts API app ready to use. When you build this project it will fetch doughnuts being sold at [Boxcar Donuts](https://www.bxcrdonuts.ca/) 
 
 It will include names, descriptions, prices, images and if its a special doughnut meaning that its available for a limited time or if its a standard doughnut.
 
-```ts
+```tsx
 id: "lemon-sherbet",
 name: "Lemon Sherbet",
 price: "$3.25",
 description: "Our house glaze infused with naturallemon flavour and a touch of lemon buttercream. Tart and tangy on top of our soft yeast risen donut.",
+type: 'standard' | 'weekly',
 imageUrl: "https://boxcardonuts.ca/wp-content/uploads/2020/05/271BE853-10DE-4DB2-B7A2-A38CB876A865-scaled.jpeg"
 ```
 
@@ -48,11 +49,14 @@ To view [Swagger](https://swagger.io/docs/) docs go to [http://localhost:3000/ap
 ## APIS 
 The following endpoints are available for you to use
 
-```bash
-# Returns all doughnuts
+```tsx
+// Returns all doughnuts
 /doughnuts 
 
-# Returns a single doughnut
+// Returns filtered results of standard/weekly doughnuts
+/doughnuts?type=doughnutType 
+
+// Returns a single doughnut
 /doughnuts/:dounughtId
 ```
 
