@@ -11,7 +11,7 @@ describe('Doughnuts', () => {
   let app: INestApplication;
 
   const doughnutsService = {
-    getDoughnuts: () => doughnuts,
+    getDoughnuts: (query?: { type: string }) => doughnuts,
     getDoughnut: (doughnutId: string) =>
       doughnuts.find(d => d.id === doughnutId)
   };
@@ -33,6 +33,24 @@ describe('Doughnuts', () => {
       .get('/doughnuts')
       .expect(200)
       .expect(doughnutsService.getDoughnuts());
+  });
+
+  it(`/GET standard doughnuts`, () => {
+    const standard = { type: 'standard' };
+    return request(app.getHttpServer())
+      .get('/doughnuts')
+      .query(standard)
+      .expect(200)
+      .expect(doughnutsService.getDoughnuts(standard));
+  });
+
+  it(`/GET weekly doughnuts`, () => {
+    const weekly = { type: 'weekly' };
+    return request(app.getHttpServer())
+      .get('/doughnuts')
+      .query(weekly)
+      .expect(200)
+      .expect(doughnutsService.getDoughnuts(weekly));
   });
 
   it(`/GET 'caramel-green-apple' doughnut`, () => {
