@@ -6,6 +6,6 @@ import { DoughnutsModule } from './doughnuts/doughnuts.module';
 @Module({
   imports: [DoughnutsModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
 export class AppModule {}

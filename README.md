@@ -10,7 +10,7 @@
 
 ## What is Doughnuts API? 🍩
 
-This is a [NX Monorepo](https://nx.dev) that will provide you with a Doughnuts API app ready to use. When you build this project it will fetch doughnuts being sold at [Boxcar Donuts](https://www.bxcrdonuts.ca/) 
+This is a [NX Monorepo](https://nx.dev) that will provide you with a Doughnuts API app ready to use. When you build this project it will fetch doughnuts being sold at [Boxcar Donuts](https://www.bxcrdonuts.ca/)
 
 It will include names, descriptions, prices, images and if its a special doughnut meaning that its available for a limited time or if its a standard doughnut.
 
@@ -24,12 +24,15 @@ imageUrl: "https://boxcardonuts.ca/wp-content/uploads/2020/05/271BE853-10DE-4DB2
 ```
 
 ## Setup & Run the Application
+
 ### Get Started
+
 ```bash
 yarn
 ```
 
 ### Build Doughnuts
+
 Using this command will fetch the new weekly doughnut flavours that are updated every Tuesday.
 
 ```bash
@@ -46,15 +49,16 @@ yarn start api
 
 To view [Swagger](https://swagger.io/docs/) docs go to [http://localhost:3000/api](http://localhost:3000/api)
 
-## APIS 
+## APIS
+
 The following endpoints are available for you to use
 
 ```tsx
 // Returns all doughnuts
-/doughnuts 
+/doughnuts
 
 // Returns filtered results of standard/weekly doughnuts
-/doughnuts?type=doughnutType 
+/doughnuts?type=doughnutType
 
 // Returns a single doughnut
 /doughnuts/:dounughtId
@@ -68,7 +72,6 @@ Linting and tests are executed, and a test coverage report is posted to the corr
 
 The current CI `build` status is displayed on the README as a badge:
 
-
 ## Coverage Reports
 
 <img src="./assets/coverage-report.png">
@@ -80,30 +83,3 @@ To run the coverage report locally, it is easiest done with
 ```bash
 yarn test:api:coverage
 ```
-
-
-## Scaffolded using NX
-
-### Build
-
-Run `nx build api` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-### Running unit tests
-
-Run `nx test api` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-### Running end-to-end tests
-
-Run `ng e2e api` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-### Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-### Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
