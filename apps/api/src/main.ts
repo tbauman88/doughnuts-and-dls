@@ -10,6 +10,7 @@ import { DoughnutsModule } from './app/doughnuts/doughnuts.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
 
   const options = new DocumentBuilder()
     .setTitle('Doughnuts API')
@@ -22,7 +23,8 @@ async function bootstrap() {
   });
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(3000);
+  const port = process.env.PORT || 3333;
+  await app.listen(port);
 }
 
 bootstrap();

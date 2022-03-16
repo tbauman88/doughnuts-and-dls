@@ -1,8 +1,9 @@
 import { Combobox } from '@headlessui/react';
-import { FolderIcon, SupportIcon } from '@heroicons/react/outline';
-import { ChevronRightIcon, SearchIcon } from '@heroicons/react/solid';
+import { FolderIcon, SearchIcon, SupportIcon } from '@heroicons/react/outline';
+import { ChevronRightIcon } from '@heroicons/react/solid';
 import upperFirst from 'lodash/upperFirst';
-import { classNames, filter, recent } from './helpers/utils';
+import { STATE } from './app';
+import { classNames } from './helpers/utils';
 
 const Help = () => (
   <div className="py-14 px-6 text-center text-sm sm:px-14">
@@ -56,11 +57,13 @@ const Option = ({ item, onClick }) => (
 const ActiveOption = ({ activeOption }) => (
   <div className="flex flex-none flex-col divide-y divide-gray-700 w-full">
     <div className="flex-none p-6 text-center">
-      <img
-        src={activeOption.imageUrl}
-        alt={`${activeOption.name} doughnut`}
-        className="mx-auto h-16 w-16 rounded-full"
-      />
+      <div className="mx-auto flex items-center justify-center h-44 w-44 overflow-hidden rounded-full ring-2 ring-gray-700">
+        <img
+          src={activeOption.imageUrl}
+          alt={activeOption.name}
+          className="w-full aspect-auto"
+        />
+      </div>
       <h2 className="mt-3 font-semibold text-white">{activeOption.name}</h2>
       <span className="text-sm text-gray-400">{activeOption.description}</span>
     </div>
@@ -83,58 +86,66 @@ const ActiveOption = ({ activeOption }) => (
   </div>
 );
 
-const Search = ({ activeOption, query, onChange }) => {
-  const filtered = filter(query);
-  const empty = query === '';
-  const help = query === '?';
+const Search = ({
+  activeOption,
+  onChange,
+  filtered,
+  recentFiltered,
+  state
+}) => {
+  const empty = state === STATE.EMPTY;
+  const help = state === STATE.HELP;
+  const showResults = recentFiltered.length > 0 || filtered.length > 0;
 
   return (
-    <>
-      <div className="relative">
-        <SearchIcon
-          className="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-500"
-          aria-hidden="true"
-        />
-        <Combobox.Input
-          className="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-white placeholder-gray-500 sm:text-sm"
-          placeholder="Search..."
-          onChange={onChange}
-        />
-      </div>
+    showResults && (
+      <>
+        <div className="relative">
+          <SearchIcon
+            className="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-500"
+            aria-hidden="true"
+          />
+          <Combobox.Input
+            className="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-white placeholder-gray-500 sm:text-sm"
+            placeholder="Search..."
+            onChange={onChange}
+          />
+        </div>
 
-      {(empty || filtered.length > 0) && (
-        <Combobox.Options
-          static
-          className="max-h-120 scroll-py-2 divide-y divide-gray-500 divide-opacity-20 overflow-y-auto"
-        >
-          <div
-            className={classNames(
-              'grid divide-x divide-gray-700',
-              activeOption ? 'grid-cols-2' : 'grid-cols-1'
-            )}
+        {(empty || filtered.length > 0) && (
+          <Combobox.Options
+            static
+            className="max-h-120 scroll-py-2 divide-y divide-gray-500 divide-opacity-20 overflow-y-auto"
           >
-            <div className="min-w-0 flex-auto scroll-py-4 overflow-y-auto py-2">
-              {empty && (
-                <h2 className="mt-4 mb-2 px-3 text-xs font-semibold text-gray-200">
-                  Recent searches
-                </h2>
+            <div
+              className={classNames(
+                'grid divide-x divide-gray-700',
+                activeOption ? 'grid-cols-2' : 'grid-cols-1'
               )}
-              <ul className="text-sm text-gray-400 max-h-80">
-                {(empty ? recent : filtered).map(item => (
-                  <Option key={item.id} {...{ item }} />
-                ))}
-              </ul>
+            >
+              <div className="min-w-0 flex-auto scroll-py-4 overflow-y-auto py-2">
+                {empty && (
+                  <h2 className="mt-4 mb-2 px-3 text-xs font-semibold text-gray-200">
+                    Recent searches
+                  </h2>
+                )}
+                <ul className="text-sm text-gray-400 max-h-80">
+                  {(empty ? recentFiltered : filtered).map(item => (
+                    <Option key={item.id} {...{ item }} />
+                  ))}
+                </ul>
+              </div>
+              {activeOption != null ? (
+                <ActiveOption {...{ activeOption }} />
+              ) : null}
             </div>
-            {activeOption != null ? (
-              <ActiveOption {...{ activeOption }} />
-            ) : null}
-          </div>
-        </Combobox.Options>
-      )}
+          </Combobox.Options>
+        )}
 
-      {help && <Help />}
-      {!empty && !help && filtered.length === 0 && <EmptyState />}
-    </>
+        {help && <Help />}
+        {!empty && !help && filtered.length === 0 && <EmptyState />}
+      </>
+    )
   );
 };
 
