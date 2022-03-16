@@ -3,7 +3,7 @@ import { FolderIcon, SearchIcon } from '@heroicons/react/outline';
 import concat from 'lodash/concat';
 import debounce from 'lodash/debounce';
 import shuffle from 'lodash/shuffle';
-import { Fragment, useCallback, useMemo, useState } from 'react';
+import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
 import { useDoughnuts } from './api';
 import ActiveOption from './components/ActiveOption';
 import Footer from './components/Footer';
@@ -12,22 +12,16 @@ import SearchResults from './components/SearchResults';
 import { drinks } from './data';
 import { classNames } from './helpers/utils';
 
-export const STATE = {
-  EMPTY: '',
-  HELP: '?'
-};
-
 export default function App() {
   const { doughnuts, doughnutsLoading } = useDoughnuts();
-
-  const [state, setState] = useState(STATE.EMPTY);
+  const [query, setQuery] = useState('');
   const [activeOption, setActiveOption] = useState(null);
   const [filtered, setFiltered] = useState([]);
 
   const filterResults = useCallback(
     event => {
       if (event === '?') {
-        setState(event);
+        setQuery(event);
       }
 
       const items = concat(drinks, doughnuts);
@@ -63,7 +57,7 @@ export default function App() {
   const handleChange = useCallback(
     e => {
       setActiveOption(null);
-      setState(e.target.value);
+      setQuery(e.target.value);
       debounceFilterResults(e.target.value);
     },
     [debounceFilterResults]
@@ -77,9 +71,11 @@ export default function App() {
     return [firstDoughnut, secondDoughnut, firstDrink, secondDrink];
   }, [doughnutsLoading]);
 
-  const recentFiltered = useMemo(loadRecent, [loadRecent]);
-
-  if (doughnutsLoading) return <span>Loading...</span>;
+  useEffect(() => {
+    if (filtered.length === 0) {
+      setFiltered(loadRecent);
+    }
+  }, [filtered.length, loadRecent]);
 
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -114,47 +110,47 @@ export default function App() {
             className="mx-auto w-full max-w-2xl max-w-screen-md transform divide-y divide-gray-500 divide-opacity-20 overflow-hidden rounded-xl bg-gray-900 shadow-2xl transition-all flex flex-col"
             onChange={item => setActiveOption(item)}
           >
-            <div className="relative">
-              <SearchIcon
-                className="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-500"
-                aria-hidden="true"
-              />
-              <Combobox.Input
-                className="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-white placeholder-gray-500 sm:text-sm"
-                placeholder="Search..."
-                onChange={handleChange}
-              />
-            </div>
-
-            <Combobox.Options
-              static
-              className="max-h-120 scroll-py-2 divide-y divide-gray-500 divide-opacity-20 overflow-y-auto"
-            >
-              <div
-                className={classNames(
-                  'grid divide-x divide-gray-700',
-                  activeOption ? 'grid-cols-2' : 'grid-cols-1'
-                )}
-              >
-                <div className="min-w-0 flex-auto scroll-py-4 overflow-y-auto py-2">
-                  {state === STATE.EMPTY && (
-                    <h2 className="mt-4 mb-2 px-3 text-xs font-semibold text-gray-200">
-                      Recent searches
-                    </h2>
-                  )}
-                  <SearchResults
-                    filtered={state === STATE.EMPTY ? recentFiltered : filtered}
-                  />
-                </div>
-                {activeOption != null ? (
-                  <ActiveOption option={activeOption} />
-                ) : null}
+            <>
+              <div className="relative">
+                <SearchIcon
+                  className="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-500"
+                  aria-hidden="true"
+                />
+                <Combobox.Input
+                  className="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-white placeholder-gray-500 sm:text-sm"
+                  placeholder="Search..."
+                  onChange={handleChange}
+                />
               </div>
-            </Combobox.Options>
 
-            {state === STATE.HELP && <Help />}
-            {/* {filtered.length === 0 && <EmptyState />} */}
-            <Footer />
+              <Combobox.Options
+                static
+                className="max-h-120 scroll-py-2 divide-y divide-gray-500 divide-opacity-20 overflow-y-auto"
+              >
+                <div
+                  className={classNames(
+                    'grid divide-x divide-gray-700',
+                    activeOption ? 'grid-cols-2' : 'grid-cols-1'
+                  )}
+                >
+                  <div className="min-w-0 flex-auto scroll-py-4 overflow-y-auto py-2">
+                    {query === '' && (
+                      <h2 className="mt-4 mb-2 px-3 text-xs font-semibold text-gray-200">
+                        Recent searches
+                      </h2>
+                    )}
+                    <SearchResults filtered={filtered} />
+                  </div>
+                  {activeOption != null ? (
+                    <ActiveOption option={activeOption} />
+                  ) : null}
+                </div>
+              </Combobox.Options>
+
+              {query === '?' && <Help />}
+              {/* {filtered.length === 0 && <EmptyState />} */}
+              <Footer />
+            </>
           </Combobox>
         </Transition.Child>
       </Dialog>
