@@ -17,6 +17,7 @@ export default function App() {
   const [query, setQuery] = useState('');
   const [activeOption, setActiveOption] = useState(null);
   const [filtered, setFiltered] = useState([]);
+  const [searching, setSearching] = useState(false);
 
   const filterResults = useCallback(
     event => {
@@ -46,6 +47,7 @@ export default function App() {
           : items.filter(item => item.name.toLowerCase().includes(event));
 
       setFiltered(newItems);
+      setSearching(false);
     },
     [doughnuts]
   );
@@ -56,6 +58,7 @@ export default function App() {
 
   const handleChange = useCallback(
     e => {
+      setSearching(true);
       setActiveOption(null);
       setQuery(e.target.value);
       debounceFilterResults(e.target.value);
@@ -136,7 +139,7 @@ export default function App() {
                   )}
                 >
                   <div className="min-w-0 flex-auto scroll-py-4 overflow-y-auto py-2">
-                    {query === '' && (
+                    {query === '' && !searching && (
                       <h2 className="mt-4 mb-2 px-3 text-xs font-semibold text-gray-200">
                         Recent searches
                       </h2>
@@ -144,6 +147,10 @@ export default function App() {
 
                     {filtered.length === 0 && query != null ? (
                       <EmptyState />
+                    ) : searching ? (
+                      <p className="text-center text-gray-200 my-4">
+                        Searching...
+                      </p>
                     ) : (
                       <SearchResults filtered={filtered} />
                     )}
