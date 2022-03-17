@@ -50,7 +50,7 @@ export default function App() {
     [doughnuts]
   );
 
-  const debounceFilterResults = useMemo(() => debounce(filterResults, 300), [
+  const debounceFilterResults = useMemo(() => debounce(filterResults, 400), [
     filterResults
   ]);
 
@@ -71,11 +71,13 @@ export default function App() {
     return [firstDoughnut, secondDoughnut, firstDrink, secondDrink];
   }, [doughnutsLoading]);
 
+  const recentlyPurchased = useMemo(loadRecent, [loadRecent]);
+
   useEffect(() => {
-    if (filtered.length === 0) {
-      setFiltered(loadRecent);
+    if (filtered.length === 0 && query === '') {
+      setFiltered(recentlyPurchased);
     }
-  }, [filtered.length, loadRecent]);
+  }, [filtered.length, recentlyPurchased, query]);
 
   return (
     <Transition.Root show={true} as={Fragment}>
@@ -139,7 +141,12 @@ export default function App() {
                         Recent searches
                       </h2>
                     )}
-                    <SearchResults filtered={filtered} />
+
+                    {filtered.length === 0 && query != null ? (
+                      <EmptyState />
+                    ) : (
+                      <SearchResults filtered={filtered} />
+                    )}
                   </div>
                   {activeOption != null ? (
                     <ActiveOption option={activeOption} />
@@ -148,7 +155,6 @@ export default function App() {
               </Combobox.Options>
 
               {query === '?' && <Help />}
-              {/* {filtered.length === 0 && <EmptyState />} */}
               <Footer />
             </>
           </Combobox>
