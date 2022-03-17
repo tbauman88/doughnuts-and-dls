@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import 'tailwindcss/tailwind.css';
-import App from './app/App';
+import App from './app/app';
 
 const queryClient = new QueryClient();
 
