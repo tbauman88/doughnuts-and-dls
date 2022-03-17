@@ -6,3 +6,11 @@ export interface Doughnut {
   type: string;
   imageUrl: string;
 }
+
+export interface Drink {
+  id: string;
+  name: string;
+  description: string;
+  price: string;
+  imageUrl: string;
+}
